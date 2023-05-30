@@ -10,7 +10,7 @@ app.use(cors());
 app.use("/auth", userRouter);
 
 mongoose.connect(
-  "mongodb+srv://achmadhafiz99:nutritionapp@nutrition.cwwixot.mongodb.net/nutrition?retryWrites=true&w=majority"
+  "mongodb+srv://achmadhafiz:workoutapp@workout.hmznjku.mongodb.net/workout?retryWrites=true&w=majority"
 );
 
 app.listen(3001, () => console.log("Server is running..."))

@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
 
   if (user) {
     // return res.status(500).json({"message": "User already registered in the system!"});
-    return res.status(500).send({"message": "User already registered in the system!"});
+    return res.status(500).send({ "message": "User already registered in the system!" });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,6 +20,7 @@ router.post("/register", async (req, res) => {
 
   res.json(newUser);
 });
+
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await UserModel.findOne({ username });
@@ -31,7 +32,7 @@ router.post("/login", async (req, res) => {
     return res.status(401).send({ message: "Username or password is invalid!" });
   };
 
-  const token = jwt.sign({ id: user._id }, "nutritionsecret");
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
   res.json({ token, userId: user._id});
 });
 

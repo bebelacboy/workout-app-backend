@@ -1,11 +1,11 @@
-const { UserModel } = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { UserModel } = require("../models/UserModel");
 
 const register = async (req, res) => {
   const { username, password } = req.body;
   const user = await UserModel.findOne({ username });
-
+  console.log("bangsat")
   if (user) {
     return res.status(500).send({ "message": "User already registered in the system!" });
   }
@@ -28,8 +28,9 @@ const login = async (req, res) => {
     return res.status(401).send({ message: "Username or password is invalid!" });
   };
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+  const token = jwt.sign({id: user._id }, process.env.JWT_SECRET_KEY);
   res.json({ username, token, userId: user._id});
+  
 }
 
 module.exports = { register, login }

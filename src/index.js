@@ -15,7 +15,7 @@ app.use("/auth", userRouter);
 app.use("/workout-plan", workoutPlanRouter)
 
 mongoose.connect(
-  "mongodb+srv://achmadhafiz:workoutapp@workout.hmznjku.mongodb.net/workout?retryWrites=true&w=majority"
-);
+  `${process.env.DB_URL}`
+  )
 
 app.listen(3001, () => console.log("Server is running..."))

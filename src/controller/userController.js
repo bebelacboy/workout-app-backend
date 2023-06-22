@@ -5,7 +5,6 @@ const { UserModel } = require("../models/UserModel");
 const register = async (req, res) => {
   const { username, password } = req.body;
   const user = await UserModel.findOne({ username });
-  console.log("bangsat")
   if (user) {
     return res.status(500).send({ "message": "User already registered in the system!" });
   }
@@ -19,7 +18,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  const user = await UserModel.findOne({ username });
+  console.log("kuda");
+  const user = await UserModel.findOne({username});
   if (!user) {
     return res.status(401).send({ message: "Username or password is invalid!" });
   }

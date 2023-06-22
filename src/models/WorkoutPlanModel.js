@@ -12,6 +12,7 @@ const WorkoutPlanSchema = mongoose.Schema({
           set: {type: Number, required: true},
           reps: {type: Number, required: true},
           currentWeight: {type: Number, default: 0}
+          
         }
       ]
     }

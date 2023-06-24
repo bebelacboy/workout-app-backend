@@ -2,7 +2,8 @@ const express = require("express");
 const { verifyToken } = require("../middleware/auth");
 const { 
   getCurrentUserPlanId,
-  setCurrentUserPlanId
+  setCurrentUserPlanId,
+  removeCurrentUserPlanId
 } = require("../controller/currentPlanController");
 
 
@@ -13,5 +14,7 @@ router.use(verifyToken);
 router.get("/", getCurrentUserPlanId);
 
 router.post("/", setCurrentUserPlanId);
+
+router.delete("/", removeCurrentUserPlanId);
 
 module.exports.currentPlanRouter = router;

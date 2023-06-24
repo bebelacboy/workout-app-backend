@@ -17,6 +17,18 @@ const createWorkoutPlan = async (req, res) => {
   })
 }
 
+const updateWorkoutPlan = async (req, res) => {
+  const updatedWorkoutPlanData = req.body;
+  await WorkoutPlanModel.findByIdAndUpdate(updatedWorkoutPlanData, {
+    ...updatedWorkoutPlanData
+  });
+  const updatedWorkoutPlan = await WorkoutPlanModel.findById(updatedWorkoutPlanData._id);
+  return res.json({
+    message: "Succesfully update workout plan",
+    workoutSession: updatedWorkoutPlan
+  })
+}
+
 const getWorkoutPlansList = async (req, res) => {
   const user = await getCurrentUser(req);
   const populatedUser = await user.populate('workoutPlans');
@@ -56,4 +68,5 @@ module.exports = {
   getWorkoutPlansList,
   getWorkoutPlanById,
   deleteWorkoutPlanById,
+  updateWorkoutPlan
 }

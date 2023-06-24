@@ -8,7 +8,7 @@ const register = async (req, res) => {
   if (user) {
     return res.status(500).send({ "message": "User already registered in the system!" });
   }
-
+  
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = new UserModel({ username: username, password: hashedPassword });
   await newUser.save();

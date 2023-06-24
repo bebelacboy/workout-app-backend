@@ -5,6 +5,7 @@ const {
   getWorkoutPlansList, 
   getWorkoutPlanById,
   deleteWorkoutPlanById, 
+  updateWorkoutPlan
 } = require("../controller/workoutPlanController");
 
 
@@ -17,6 +18,8 @@ router.get("/", getWorkoutPlansList);
 router.get("/:id", getWorkoutPlanById);
 
 router.post("/", createWorkoutPlan);
+
+router.put("/", updateWorkoutPlan);
 
 router.delete("/:id", deleteWorkoutPlanById);
 

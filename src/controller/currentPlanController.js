@@ -15,7 +15,6 @@ const getCurrentUserPlanId = async (req, res) => {
   })
 }
 
-
 const setCurrentUserPlanId = async (req, res) => {
   const planId = req.body.planId;
   const user = await getCurrentUser(req);
@@ -35,7 +34,26 @@ const setCurrentUserPlanId = async (req, res) => {
   })
 }
 
+const removeCurrentUserPlanId = async (req, res) => {
+  const user = await getCurrentUser(req);
+  // await UserModel.findByIdAndUpdate({id: user._id}, {
+  //   $unset: {
+  //     currentPlan: 
+  //   }
+  // });
+  // await UserModel.findByIdAndUpdate(user._id, {
+  //   currentPlan: undefined
+  // })
+  user.currentPlan = undefined;
+  await user.save();
+
+  return res.json({
+    message: "Succesfully remove current new plan"
+  })
+}
+
 module.exports = {
   getCurrentUserPlanId,
-  setCurrentUserPlanId
+  setCurrentUserPlanId,
+  removeCurrentUserPlanId
 }

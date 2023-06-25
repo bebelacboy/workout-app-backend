@@ -21,4 +21,6 @@ app.use("/workout-session", workoutSessionRouter);
 mongoose.connect(
   `${process.env.DB_URL}`
   )
-app.listen(process.env.SERVER_PORT, () => console.log("Server is running..."))
+app.listen(process.env.SERVER_PORT, () => console.log("Server is running..."));
+
+module.exports = app;

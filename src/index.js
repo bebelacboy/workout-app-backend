@@ -11,8 +11,19 @@ const app = express();
 
 dotenv.config();
 
+const allowedOrigins = [process.env.CLIENT_URL]
+
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: function (origin, callback) {
+    // Check if the request origin is in the allowed origins list
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use("/auth", userRouter);
 app.use("/workout-plan", workoutPlanRouter);
 app.use("/current-plan", currentPlanRouter);

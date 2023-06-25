@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bebelacboy/nutrition-app-backend.git"
+    "url": "git+https://github.com/bebelacboy/workout-app-backend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bebelacboy/nutrition-app-backend/issues"
+    "url": "https://github.com/bebelacboy/workout-app-backend/issues"
   },
-  "homepage": "https://github.com/bebelacboy/nutrition-app-backend#readme",
+  "homepage": "https://github.com/bebelacboy/workout-app-backend#readme",
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.0",

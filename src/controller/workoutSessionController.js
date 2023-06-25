@@ -9,7 +9,7 @@ const createWorkoutSession = async (req, res) => {
   const existingWorkoutSession = populatedUser.workoutSessions.find((session) => {
     const sessionDate = new Date(session.date);
     const workoutSessionDataDate = new Date(workoutSessionData.date);
-    return sessionDate.toLocaleDateString().replaceAll("/", "-") === workoutSessionDataDate.toLocaleDateString().replaceAll("/","-");
+    return sessionDate.toISOString().substring(0, 10) === workoutSessionDataDate.toISOString().substring(0, 10);
   });
   if (existingWorkoutSession) {
     return res.status(400).json({
@@ -53,7 +53,7 @@ const getWorkoutSessionByDate = async (req, res) => {
   const paramDate = req.params.date;
   const workoutSession = populatedUser.workoutSessions.find((session) => {
     const sessionDate = new Date(session.date);
-    return sessionDate.toLocaleDateString().replaceAll("/", "-") === paramDate;
+    return sessionDate.toISOString().substring(0, 10) === paramDate;
   });
   if (!workoutSession) {
     return res.status(404).json({

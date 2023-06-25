@@ -18,7 +18,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  console.log("kuda");
   const user = await UserModel.findOne({username});
   if (!user) {
     return res.status(401).send({ message: "Username or password is invalid!" });

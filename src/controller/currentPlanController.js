@@ -2,6 +2,18 @@ const { UserModel } = require("../models/UserModel");
 const { WorkoutPlanModel } = require("../models/WorkoutPlanModel");
 const getCurrentUser = require("../utils/getCurrentUser");
 
+const adminOnlyContent = async (req, res) => {
+  console.log(req.user.role)
+  if (req.user.role == "ADMIN") {
+    return res.status(200).json({
+      message: "ADMIN ONLY CONTENT"
+    });
+  }
+  return res.status(403).json({
+    message: "FORBIDDEN CONTENT YOU ARE NOT ADMIN"
+  })
+}
+
 const getCurrentUserPlanId = async (req, res) => {
   const user = await getCurrentUser(req);
   const currentPlanId = user.currentPlan;
@@ -55,5 +67,6 @@ const removeCurrentUserPlanId = async (req, res) => {
 module.exports = {
   getCurrentUserPlanId,
   setCurrentUserPlanId,
-  removeCurrentUserPlanId
+  removeCurrentUserPlanId,
+  adminOnlyContent
 }

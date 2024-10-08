@@ -10,7 +10,6 @@ const createWorkoutPlan = async (req, res) => {
   await newWorkoutPlan.save();
   user.workoutPlans.push(newWorkoutPlan._id);
   user.save()
-
   return res.json({
     message: "Succesfully create new workout plan",
     workoutPlan: newWorkoutPlan
